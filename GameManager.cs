@@ -125,20 +125,6 @@ public static class GameManager
         return false;
     }
 
-    // This code by Tom is licensed under the CC BY-SA 3.0 license / modified
-    // https://stackoverflow.com/q/7420601/22315071
-    public static int IndexOf(this string str, Predicate<char> predicate)
-    {
-        for (int index = 0; index < str.Length; index++)
-        {
-            if (predicate(str[index]))
-            {
-                return index;
-            }
-        }
-        return -1;
-    }
-
     public static string ReadLineValidated()  
     {  
         var input = new StringBuilder();
