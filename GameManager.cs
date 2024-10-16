@@ -30,11 +30,12 @@ public static class GameManager
     {
         // TODO: Use Spectre.Console for UI, but we might need the char/password verifying thing from the bank account demo for character validation anyway
 
-        AnsiConsole.MarkupLine("[blue]C# Wordle Simulator[/]\n[gray](Press any key to continue)[/]");
+        AnsiConsole.MarkupLine("[blue]C# Wordle Simulator[/]");
 
-        ConsoleKeyInfo keyInfo = Console.ReadKey();
+        // ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-        PlayGame(keyInfo.Key == ConsoleKey.Oem3);
+        // PlayGame(keyInfo.Key == ConsoleKey.Oem3);
+        PlayGame(true);
     }
 
     // TODO: add replay functionality 
@@ -65,6 +66,8 @@ public static class GameManager
         }
 
         var guessResults = new List<GuessResult[]>();
+
+        AnsiConsole.MarkupLine("[gray](Enter guess to start)[/]");
 
         do
         {
