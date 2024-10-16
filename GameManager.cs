@@ -49,16 +49,16 @@ public static class GameManager
             {
                 Console.WriteLine("Input debug word:");
 
-                answer = Console.ReadLine() ?? string.Empty;
+                answer = GetWord(5);
 
                 if (AllWords.Contains(answer))
                 {
                     break;
                 }
 
-                Console.WriteLine("Invalid input.");
                 // TODO: Inline invalid input message
 
+                Console.WriteLine("Invalid word.");
             }
             while (true);
         }
@@ -75,13 +75,7 @@ public static class GameManager
 
         do
         {
-            string guess = ReadLineValidated() ?? string.Empty;
-
-            if (guess.Length != 5 || !AllWords.Contains(guess))
-            {
-                Console.WriteLine("Invalid input.");
-                continue;
-            }
+            string guess = GetWord(5) ?? string.Empty;
 
             var guessResult = new GuessResult[5];
             guessResults.Add(new GuessResult[5]);
@@ -103,8 +97,6 @@ public static class GameManager
                     }
                 }
             }
-
-            Console.CursorTop--;
 
             for (int i = 0; i < 5; i++)
             {
@@ -141,41 +133,64 @@ public static class GameManager
         return false;
     }
 
-    public static string ReadLineValidated()  
+    private static string GetWord(int maxLength)  
     {  
-        var input = new StringBuilder();
+        var word = new StringBuilder();
         ConsoleKeyInfo keyInfo;
 
-        do  
+        bool lineIsCleared = true;
+
+        do
         {
-            keyInfo = Console.ReadKey(true);
-
-            if ((keyInfo.Key == ConsoleKey.Backspace) && (input.Length > 0))  
+            do  
             {
-                input = input.Remove(input. Length - 1, 1);
-                
-                Console.Write("\b \b"); // Thanks John Arlen for the explanation!
-                                        // https://stackoverflow.com/a/5195807/22315071
+                keyInfo = Console.ReadKey(true);
 
-                continue;
+                if (!lineIsCleared)
+                {
+                    ClearLastLine();
+                }
+
+                if ((keyInfo.Key == ConsoleKey.Backspace) && (word.Length > 0))  
+                {
+                    word = word.Remove(word.Length - 1, 1);
+                    Console.Write("\b \b"); // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/5195807/22315071
+                    continue;
+                }
+                if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"\w"))
+                {
+                    continue;
+                }
+                if (word.Length >= maxLength)
+                {
+                    word.Remove(maxLength, word.Length - maxLength); // Can be removed, but shouldn't, just in case
+                    continue;
+                }
+
+                word.Append(char.ToLower(keyInfo.KeyChar));
+                Console.Write(char.ToUpper(keyInfo.KeyChar));
             }
-            if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"\w"))
+            while (keyInfo.Key != ConsoleKey.Enter);
+
+            if (AllWords.Contains(word.ToString()))
             {
-                continue;
-            }
-            if (input.Length >= 5)
-            {
-                input.Remove(5, input.Length - 5);
-                continue;
+                break;
             }
 
-            input.Append(keyInfo.KeyChar);
-            Console.Write(char.ToUpper(keyInfo.KeyChar));
+            Console.WriteLine("Invalid word.");
+            Console.CursorTop--;
+            lineIsCleared = false;
         }
-        while (keyInfo.Key != ConsoleKey.Enter);
+        while (true);
 
-        Console.WriteLine();
+        return word.ToString();
+    }
 
-        return input.ToString();
+    // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/36813552
+    public static void ClearLastLine()
+    {
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.Write(new string(' ', Console.BufferWidth));
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
     }
 }
