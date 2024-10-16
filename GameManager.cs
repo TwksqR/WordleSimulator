@@ -83,13 +83,14 @@ public static class GameManager
                 continue;
             }
 
+            var guessResult = new GuessResult[5];
             guessResults.Add(new GuessResult[5]);
 
             for (int i = 0; i < 5; i++)
             {
                 if (guess[i] == answer[i])
                 {
-                    guessResults[guessResults.Count - 1][i] = GuessResult.Correct;
+                    guessResult[i] = GuessResult.Correct;
                     continue;
                 }
 
@@ -97,7 +98,7 @@ public static class GameManager
                 {
                     if ((guess[j] == answer[i]) && guessResults[guessResults.Count - 1][j] == GuessResult.Incorrect)
                     {
-                        guessResults[guessResults.Count - 1][j] = GuessResult.WrongPosition;
+                        guessResult[j] = GuessResult.WrongPosition;
                         break;
                     }
                 }
@@ -109,7 +110,7 @@ public static class GameManager
             {
                 Thread.Sleep(250);
 
-                string resultColor = guessResults[guessResults.Count - 1][i] switch
+                string resultColor = guessResult[i] switch
                 {
                     GuessResult.Incorrect => "white on #3a3a3c",
                     GuessResult.WrongPosition => "white on #b59f3a",
