@@ -117,7 +117,6 @@ public static class GameManager
         Console.WriteLine($"The word was \"{answer}\"");
         Console.ReadKey();
         return false;
-    }
 
     private static string GetVerifiedWord(int maxLength)  
     {  
