@@ -11,8 +11,7 @@ public static class GameManager
     public static readonly ReadOnlyCollection<string> BannedWords;
     public static readonly ReadOnlyCollection<string> CommonWords;
 
-    // FIXME: Directory is different when running in VS Code and when running executable through File Explorer
-    public static readonly string ProjectFilePath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Name;
+    public static readonly string ProjectFilePath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
 
     public static readonly string AllWordsFilePath = @$"{ProjectFilePath}/data/all_words.json";
     public static readonly string AllowedWordsFilePath = @$"{ProjectFilePath}/data/allowed_words.json";
