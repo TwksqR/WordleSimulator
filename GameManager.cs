@@ -41,9 +41,7 @@ public static class GameManager
     // TODO: add replay functionality 
     static bool PlayGame(bool debugModeIsEnabled)
     {
-        var rand = new Random(DateTime.Now.Millisecond);
-
-        string answer = AllowedWords[rand.Next(0, AllowedWords.Count)];
+        string answer;
 
         if (debugModeIsEnabled)
         {
@@ -63,6 +61,12 @@ public static class GameManager
 
             }
             while (true);
+        }
+        else
+        {
+            var rand = new Random(DateTime.Now.Millisecond);
+
+            answer = AllowedWords[rand.Next(0, AllowedWords.Count)];
         }
 
         var guessResults = new List<GuessResult[]>();
