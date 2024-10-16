@@ -121,6 +121,8 @@ public static class GameManager
                 AnsiConsole.Markup($"[{resultColor}]{char.ToUpper(guess[i])}[/]");
             }
 
+            Console.ResetColor();
+
             Thread.Sleep(250);
             Console.WriteLine();
 
