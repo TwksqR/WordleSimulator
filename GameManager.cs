@@ -20,7 +20,6 @@ public static class GameManager
 
     static GameManager()
     {
-        Console.WriteLine(ProjectFilePath);
         AllWords = JsonConvert.DeserializeObject<ReadOnlyCollection<string>>(File.ReadAllText(AllWordsFilePath)) ?? new List<string>().AsReadOnly();
         AllowedWords = JsonConvert.DeserializeObject<ReadOnlyCollection<string>>(File.ReadAllText(AllowedWordsFilePath)) ?? new List<string>().AsReadOnly();
         BannedWords = JsonConvert.DeserializeObject<ReadOnlyCollection<string>>(File.ReadAllText(BannedWordsFilePath)) ?? new List<string>().AsReadOnly();
