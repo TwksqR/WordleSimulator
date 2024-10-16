@@ -129,12 +129,15 @@ public static class GameManager
             if (guess == answer)
             {
                 AnsiConsole.Markup($"[blue]Guesses: {guessResults.Count}[/]");
+
+                Console.ReadKey();
                 return true;
             }
         }
         while (guessResults.Count < 6);
 
         Console.WriteLine($"The word was \"{answer}\"");
+        Console.ReadKey();
         return false;
     }
 
