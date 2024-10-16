@@ -37,6 +37,7 @@ public static class GameManager
         PlayGame(keyInfo.Key == ConsoleKey.Oem3);
     }
 
+    // TODO: add replay functionality 
     static bool PlayGame(bool debugModeIsEnabled)
     {
         var rand = new Random(DateTime.Now.Millisecond);
@@ -57,6 +58,8 @@ public static class GameManager
                 }
 
                 Console.WriteLine("Invalid input.");
+                // TODO: Inline invalid input message
+
             }
             while (true);
         }
