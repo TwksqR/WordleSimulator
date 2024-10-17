@@ -185,18 +185,17 @@ public static class GameManager
         return word.ToString();
     }
 
-    // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/36813552
-    public static void ClearLastLine()
-    {
-        Console.SetCursorPosition(0, Console.CursorTop - 1);
-        Console.Write(new string(' ', Console.BufferWidth));
-        Console.SetCursorPosition(0, Console.CursorTop - 1);
-    }
-
     public static void ClearLine()
     {
         Console.SetCursorPosition(0, Console.CursorTop);
         Console.Write(new string(' ', Console.BufferWidth));
         Console.SetCursorPosition(0, Console.CursorTop);
+    }
+
+    public static void ClearLine(int index)
+    {
+        Console.SetCursorPosition(index, Console.CursorTop);
+        Console.Write(new string(' ', Console.BufferWidth));
+        Console.SetCursorPosition(index, Console.CursorTop);
     }
 }
