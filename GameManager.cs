@@ -195,7 +195,7 @@ public static class GameManager
     public static void ClearLine(int index)
     {
         Console.CursorLeft = index;
-        Console.Write(new string(' ', Console.BufferWidth));
+        Console.Write(new string(' ', Console.BufferWidth - index));
         Console.CursorLeft = index;
     }
 }
