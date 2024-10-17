@@ -177,8 +177,7 @@ public static class GameManager
                 break;
             }
 
-            Console.WriteLine("Invalid word.");
-            Console.CursorTop--;
+            AnsiConsole.Markup(" [red]Invalid word.[/]");
             lineIsCleared = false;
         }
         while (true);
