@@ -11,6 +11,7 @@ public static class GameManager
     public static readonly ReadOnlyCollection<string> BannedWords;
     public static readonly ReadOnlyCollection<string> CommonWords;
 
+    // FIXME: Get rid of null reference
     public static readonly string ProjectFilePath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
 
     public static readonly string AllWordsFilePath = @$"{ProjectFilePath}/data/all_words.json";
