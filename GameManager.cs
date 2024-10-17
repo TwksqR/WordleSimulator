@@ -157,7 +157,7 @@ public static class GameManager
                     Console.Write("\b \b"); // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/5195807/22315071
                     continue;
                 }
-                if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"\w"))
+                if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"[a-zA-Z]"))
                 {
                     continue;
                 }
