@@ -45,22 +45,9 @@ public static class GameManager
 
         if (debugModeIsEnabled)
         {
-            do 
-            {
-                Console.WriteLine("Input debug word:");
+            Console.WriteLine("Input debug word:");
 
-                answer = GetWord(5);
-
-                if (AllWords.Contains(answer))
-                {
-                    break;
-                }
-
-                // TODO: Inline invalid input message
-
-                Console.WriteLine("Invalid word.");
-            }
-            while (true);
+            answer = GetVerifiedWord(5);
         }
         else
         {
@@ -75,7 +62,7 @@ public static class GameManager
 
         do
         {
-            string guess = GetWord(5) ?? string.Empty;
+            string guess = GetVerifiedWord(5);
 
             var guessResult = new GuessResult[5];
             guessResults.Add(new GuessResult[5]);
@@ -98,6 +85,8 @@ public static class GameManager
                 }
             }
 
+            Console.CursorLeft = 0;
+
             for (int i = 0; i < 5; i++)
             {
                 Thread.Sleep(250);
@@ -113,15 +102,12 @@ public static class GameManager
                 AnsiConsole.Markup($"[{resultColor}]{char.ToUpper(guess[i])}[/]");
             }
 
-            Console.ResetColor();
-
             Thread.Sleep(250);
             Console.WriteLine();
 
             if (guess == answer)
             {
-                AnsiConsole.Markup($"[blue]Guesses: {guessResults.Count}[/]");
-
+                AnsiConsole.MarkupLine($"[blue]Guesses: {guessResults.Count}[/]");
                 Console.ReadKey();
                 return true;
             }
@@ -133,22 +119,28 @@ public static class GameManager
         return false;
     }
 
-    private static string GetWord(int maxLength)  
+    private static string GetVerifiedWord(int maxLength)  
     {  
         var word = new StringBuilder();
         ConsoleKeyInfo keyInfo;
 
+        // TODO: Relocate to smallest scope
         bool lineIsCleared = true;
+
+        Console.Write(".....");
 
         do
         {
             do
             {
+                Console.CursorLeft = word.Length;
                 keyInfo = Console.ReadKey(true);
 
                 if (!lineIsCleared)
                 {
-                    ClearLastLine();
+                    ClearLine(5);
+                    lineIsCleared = true;
+                    Console.CursorLeft = word.Length;
                 }
 
                 if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"[a-zA-Z]"))
@@ -176,6 +168,8 @@ public static class GameManager
             {
                 return word.ToString();
             }
+
+            Console.CursorLeft = 5;
 
             AnsiConsole.Markup(" [red]Invalid word.[/]");
             lineIsCleared = false;
