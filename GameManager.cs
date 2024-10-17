@@ -151,14 +151,14 @@ public static class GameManager
                     ClearLastLine();
                 }
 
-                if ((keyInfo.Key == ConsoleKey.Backspace) && (word.Length > 0))  
-                {
-                    word = word.Remove(word.Length - 1, 1);
-                    Console.Write("\b \b"); // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/5195807/22315071
-                    continue;
-                }
                 if (!Regex.IsMatch(keyInfo.KeyChar.ToString(), @"[a-zA-Z]"))
                 {
+                    if ((keyInfo.Key == ConsoleKey.Backspace) && (word.Length > 0))  
+                    {
+                        word = word.Remove(word.Length - 1, 1);
+                        Console.Write("\b \b"); // Used under the CC BY-SA 3.0 license - https://stackoverflow.com/a/5195807/22315071
+                    }
+
                     continue;
                 }
                 if (word.Length >= maxLength)
