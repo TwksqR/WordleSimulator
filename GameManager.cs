@@ -142,7 +142,7 @@ public static class GameManager
 
         do
         {
-            do  
+            do
             {
                 keyInfo = Console.ReadKey(true);
 
