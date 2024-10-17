@@ -192,10 +192,10 @@ public static class GameManager
         Console.CursorLeft = 0;
     }
 
-    public static void ClearLine(int index)
+    public static void ClearLine(int left)
     {
-        Console.CursorLeft = index;
-        Console.Write(new string(' ', Console.BufferWidth - index));
-        Console.CursorLeft = index;
+        Console.CursorLeft = left;
+        Console.Write(new string(' ', Console.BufferWidth - left));
+        Console.CursorLeft = left;
     }
 }
