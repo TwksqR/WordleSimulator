@@ -35,7 +35,7 @@ public static class GameManager
         // ConsoleKeyInfo keyInfo = Console.ReadKey();
 
         // PlayGame(keyInfo.Key == ConsoleKey.Oem3);
-        PlayGame(true);
+        PlayGame(false);
     }
 
     // TODO: add replay functionality 
