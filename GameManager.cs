@@ -174,15 +174,13 @@ public static class GameManager
 
             if (AllWords.Contains(word.ToString()))
             {
-                break;
+                return word.ToString();
             }
 
             AnsiConsole.Markup(" [red]Invalid word.[/]");
             lineIsCleared = false;
         }
         while (true);
-
-        return word.ToString();
     }
 
     public static void ClearLine()
