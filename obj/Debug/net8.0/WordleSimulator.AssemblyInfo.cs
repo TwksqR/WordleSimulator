@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WordleSimulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+188d1e187a643a0fb3dfa4fade59c5aaa529bdbc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df85990421bf951a7636cf5e73720981e275adca")]
 [assembly: System.Reflection.AssemblyProductAttribute("WordleSimulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WordleSimulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
