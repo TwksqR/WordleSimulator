@@ -187,15 +187,15 @@ public static class GameManager
 
     public static void ClearLine()
     {
-        Console.SetCursorPosition(0, Console.CursorTop);
+        Console.CursorLeft = 0;
         Console.Write(new string(' ', Console.BufferWidth));
-        Console.SetCursorPosition(0, Console.CursorTop);
+        Console.CursorLeft = 0;
     }
 
     public static void ClearLine(int index)
     {
-        Console.SetCursorPosition(index, Console.CursorTop);
+        Console.CursorLeft = index;
         Console.Write(new string(' ', Console.BufferWidth));
-        Console.SetCursorPosition(index, Console.CursorTop);
+        Console.CursorLeft = index;
     }
 }
